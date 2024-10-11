@@ -49,14 +49,36 @@ function App() {
     setEditField({ id: null, field: null  });
   };
 
-  // EDITING: Function to handle updating a note
-  const handleNoteChange = (id: number, field: string, value: string) => {
-    setNotes((prevNotes) =>
-      prevNotes.map((note) =>
-        note.id === id ? { ...note, [field]: value } : note
-      )
-    );
-  };
+ // EDITING: Function to handle updating a note
+const handleNoteChange = (id: number, field: string, value: string) => {
+  setNotes((prevNotes) =>
+    prevNotes.map((note) => {
+      if (note.id === id) {
+        const updatedNote = { ...note, [field]: value };
+
+        // If the title is being updated, check and update the favorite list
+        if (field === 'title') {
+          const oldTitle = note.title;
+          const newTitle = value;
+          
+          setFavoriteNotes((prevFavorites) => {
+            // Check if the old title is in the favorite list
+            if (prevFavorites.includes(oldTitle)) {
+              // Replace the old title with the new one
+              return prevFavorites.map((fav) =>
+                fav === oldTitle ? newTitle : fav
+              );
+            }
+            return prevFavorites;
+          });
+        }
+        return updatedNote;
+      }
+      return note;
+    })
+  );
+};
+
 
   // CREATING: function to handle input changes in the form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
