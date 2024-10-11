@@ -1,7 +1,7 @@
 import './App.css';
 import { Label, Note } from "./types"; // Import the Label type from the appropriate module
 import { dummyNotesList } from "./constant"; // Import the dummyNotesList from the appropriate module
-import ClickCounter from './hooksExercise'
+import HomePage from './hooksExercise'
 import { useState } from 'react';
 
 
@@ -122,113 +122,9 @@ const handleNoteChange = (id: number, field: string, value: string) => {
   };
   
  return (
-   <div className='app-container'>
-    <ClickCounter/>
-    <form className="note-form" onSubmit={handleFormSubmit}>
-       <div>
-          <input 
-            name="title"
-            value={createNote.title}
-            placeholder='Note Title'
-            onChange={handleInputChange}
-          />
-       </div>
-       <div>
-        <textarea 
-          name='content'
-          value={createNote.content}
-          placeholder = "Note Content"
-          onChange={handleInputChange}
-        />
-        </div>
-        <select
-          name='label'
-          value={createNote.label}
-          onChange={handleInputChange}
-        >
-          <option value='personal'>personal</option>
-          <option value='work'>work</option>
-          <option value='other'>other</option>
-        </select>
-       <div>  
-          <button type="submit">Create Note</button>
-        </div>
-    </form>
-     {/* display notes list */}
-     <div className="notes-grid">
-        {notes.map((note) => (
-          <div key={note.id} className="note-item">
-            <div className="notes-header">
-              <button onClick={() => handleNoteDelete(note.id)}>
-                x
-              </button>
-              <button 
-                className={`favorite-btn ${favoriteNotes.includes(note.title) ? 'favorited' : ''}`} 
-                onClick={() => toggleFavoriteList(note.title)}
-              >
-                {favoriteNotes.includes(note.title) ? "Unfavorite" : "Favorite"}
-              </button>
-            </div>
-
-            {/* Inline Editing for the Title */}
-            <div>
-              {editField.id === note.id && editField.field === 'title' ? (
-                <input
-                  type="text"
-                  value={note.title}
-                  onChange={(e) => handleNoteChange(note.id, 'title', e.target.value)}
-                  onBlur={handleBlur} // Stop editing on blur
-                  autoFocus // Automatically focus on the input when clicked
-                />
-              ) : (
-                <h2 onClick={() => handleEdit(note.id, 'title')}> {note.title} </h2>
-              )}
-            </div>
-
-            {/* inline editing */}
-            <div>
-              {editField.id === note.id && editField.field === 'content' ? (
-                <textarea
-                  value={note.content}
-                  onChange={(e) => handleNoteChange(note.id, 'content', e.target.value)}
-                  onBlur={handleBlur} // Stop editing on blur
-                  autoFocus // Automatically focus on the textarea when clicked
-                />
-              ) : (
-                <p onClick={() => handleEdit(note.id, 'content')}> {note.content} </p>
-              )}
-            </div>
-             {/* inline editing */}
-             <div>
-              {editField.id === note.id && editField.field === 'label' ? (
-                <select
-                  value={note.label}
-                  onChange={(e) => handleNoteChange(note.id, 'label', e.target.value)}
-                  onBlur={handleBlur} // Stop editing on blur
-                  autoFocus // Automatically focus on the textarea when clicked
-                >
-                  <option>personal</option>
-                  <option>work</option>
-                  <option>other</option>
-                </select>
-              ) : (
-                <p onClick={() => handleEdit(note.id, 'label')}> {note.label} </p>
-              )}
-            </div>
-           
-          </div>
-        ))}
-      </div>
-     {/* List of Favorites */}
-     <div className="favorites-list">
-        <h3>List of Favorites:</h3>
-        <ul>
-          {favoriteNotes.map((title, index) => (
-            <li key={index}>{title}</li>
-          ))}
-        </ul>
-      </div>
-     </div>
+   <div className='app-box'>
+      <HomePage/>
+    </div>
 
         
 

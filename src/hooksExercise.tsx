@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext, themes } from "./themeContext";
+import HomePage from './HomePage';
 
 
 
@@ -48,6 +49,7 @@ function ToggleTheme() {
       <ThemeContext.Provider value={currentTheme}>
         <button onClick={toggleTheme}> Toggle Theme </button>
         <ClickCounter />
+        <HomePage />
       </ThemeContext.Provider>
     );
    }
