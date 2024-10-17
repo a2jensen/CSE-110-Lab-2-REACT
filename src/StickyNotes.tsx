@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { ThemeContext, themes } from "./themeContext";
 
 
-function HomePage() {
+function StickyNotes() {
   // controls list of favorite notes
   const [favoriteNotes, setFavoriteNotes] = useState<string[]>([])
   const theme = useContext(ThemeContext);
@@ -241,5 +241,5 @@ const handleNoteChange = (id: number, field: string, value: string) => {
  );
 }
 
-export default HomePage;
+export default StickyNotes;
 
