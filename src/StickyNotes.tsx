@@ -165,7 +165,7 @@ const handleNoteChange = (id: number, field: string, value: string) => {
         {notes.map((note) => (
           <div key={note.id} className="note-item">
             <div className="notes-header">
-              <button onClick={() => handleNoteDelete(note.id)}>
+              <button data-testid="Delete Button" onClick={() => handleNoteDelete(note.id)}>
                 x
               </button>
               <button 
@@ -187,7 +187,7 @@ const handleNoteChange = (id: number, field: string, value: string) => {
                   autoFocus // Automatically focus on the input when clicked
                 />
               ) : (
-                <h2 onClick={() => handleEdit(note.id, 'title')}> {note.title} </h2>
+                <h2 data-testid="Edit Title"  onClick={() => handleEdit(note.id, 'title')}> {note.title} </h2>
               )}
             </div>
 
@@ -201,7 +201,7 @@ const handleNoteChange = (id: number, field: string, value: string) => {
                   autoFocus // Automatically focus on the textarea when clicked
                 />
               ) : (
-                <p onClick={() => handleEdit(note.id, 'content')}> {note.content} </p>
+                <p data-testid="Edit Content" onClick={() => handleEdit(note.id, 'content')}> {note.content} </p>
               )}
             </div>
              {/* inline editing */}
