@@ -24,6 +24,18 @@ describe("Clicking ToDoList", () => {
         expect(updatedCount).toBeInTheDocument();
     })
 
+     test("Check If Count Changes After Unchecking Apple", () => {
+        render(<ToDoList/>);
+
+        const checkApples = screen.getByTestId("Check=Apples")
+
+        fireEvent.click(checkApples)
+        
+        const updatedCount = screen.getByText("Items bought: -1")
+        
+        expect(updatedCount).toBeInTheDocument();
+    })
+
     test("Check If Count Updates for Banana", () => {
         render(<ToDoList/>);
 
@@ -35,5 +47,5 @@ describe("Clicking ToDoList", () => {
         
         expect(updatedCount).toBeInTheDocument();
     })
-    
 })
+
